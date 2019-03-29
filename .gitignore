@@ -4,3 +4,4 @@ venv/
 Swagger/
 __pycache__/
 .idea/
+settings.py
