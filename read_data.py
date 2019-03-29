@@ -1,4 +1,3 @@
-#import pandas as pd
 from stockstats import StockDataFrame
 from dl_data import *
 
@@ -14,12 +13,14 @@ def read_dataset(filename):
     return df
 
 #df = read_dataset(filename)
+'''
+def read_raw_data():
+    df = StockDataFrame.retype(df)
+    df['macd'] = df.get('macd') # calculate MACD
+    df['rsi'] = df.get('rsi_15') #calculate RSI
 
-
-df = StockDataFrame.retype(df)
-df['macd'] = df.get('macd') # calculate MACD
-df['rsi'] = df.get('rsi_15') #calculate RSI
 
 print(df)
 print('MACD: ', df['macd'][180], '\nMACD SIGNAL: ', df['macds'][180], '\nMACD HISTO: ', df['macdh'][180])
 print('RSI: ', df['rsi'][180])
+'''

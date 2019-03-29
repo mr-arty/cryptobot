@@ -1,0 +1,6 @@
+*.txt
+*.csv
+venv/
+Swagger/
+__pycache__/
+.idea/
