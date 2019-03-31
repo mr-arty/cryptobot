@@ -1,18 +1,18 @@
-from stockstats import StockDataFrame
 from dl_data import *
 
-#filename = 'BTC_USD_Bitstamp_hour_2019-03-10.csv'
 
+# filename = 'BTC_USD_Bitstamp_hour_2019-03-10.csv'
 def read_dataset(filename):
     print('Reading data from %s' % filename)
     df = pd.read_csv(filename)
-    df.datetime = pd.to_datetime(df.datetime) # change type from object to datetime
+    df.datetime = pd.to_datetime(df.datetime)   # change type from object to datetime
     df = df.set_index('datetime')
-    df = df.sort_index() # sort by datetime
+    df = df.sort_index()   # sort by datetime
     print(df.shape)
     return df
 
-#df = read_dataset(filename)
+
+# df = read_dataset(filename)
 '''
 def read_raw_data():
     df = StockDataFrame.retype(df)
