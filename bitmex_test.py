@@ -1,7 +1,8 @@
 import bitmex
 from settings import *
-import requests, json
+import requests
 from time import sleep
+
 
 symbol = 'XBTUSD'
 '''
@@ -9,12 +10,9 @@ Side = 'Sell'
 amountToTrade = 50
 price = 3912
 '''
+# НЕ ДЕМО-ВЕРСИЯ
+client = bitmex.bitmex(test=False, api_key=key, api_secret=secret_key)
 
-client = bitmex.bitmex(
-    test = False, #НЕ демо версия
-    api_key = key,
-    api_secret = secret_key,
-    )
 
 def get_balance():
     balance = client.User.User_getMargin(
@@ -28,48 +26,53 @@ def get_balance():
     ).result()[0]['marginUsedPcnt']
     return balance, marginPcnt
 
+
 def get_trades(interval, limit):
     trades = client.Trade.Trade_getBucketed(
-        binSize = interval,
-        partial = False,
-        symbol = symbol,
-        count = limit,
-        reverse = False
+        binSize=interval,
+        partial=False,
+        symbol=symbol,
+        count=limit,
+        reverse=False
     ).result()
-    return trades
+    return trades[0] or []
+
 
 def new_limit_order(Side, price, amountToTrade):
-    client.Order.Order_new( #limit
-        symbol = symbol,
-        side = Side,
-        orderQty = amountToTrade,
-        price = priceNow, #Need to check this variable
+    client.Order.Order_new(   # limit
+        symbol=symbol,
+        side=Side,
+        orderQty=amountToTrade,
+        price=priceNow,   # Need to check this variable
         ordType='Limit'
         ).result()
 
+
 def new_stop_order(Side, price, amountToTrade):
-    client.Order.Order_new( #stop
-        symbol = symbol, # 'XBTUSD'
-        side = Side,
-        orderQty = amountToTrade,
-        stopPx = price,
-        ordType = 'Stop',
-        execInst = 'LastPrice'
+    client.Order.Order_new(   # stop
+        symbol=symbol,   # 'XBTUSD'
+        side=Side,
+        orderQty=amountToTrade,
+        stopPx=price,
+        ordType='Stop',
+        execInst='LastPrice'
         ).result()
+
 
 def new_close_order(Side, price, amountToTrade):
     client.Order.Order_new(
-        symbol = symbol,
-        side = Side,
-        orderQty = amountToTrade,
-        price = price,
-        execInst = 'ReduceOnly'
+        symbol=symbol,
+        side=Side,
+        orderQty=amountToTrade,
+        price=price,
+        execInst='ReduceOnly'
         ).result()
 
 
 def get_trades_request(interval, limit):        # Нужно допилить эту функцию, чтобы передавать параметры через payload
     trades = requests.get("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1h&symbol=XBTUSD&count=24").json()
     return trades
+
 
 '''
 for n in range(50):
@@ -79,4 +82,4 @@ for n in range(50):
     print(ether_ask_price, ether_bid_price)
     sleep(2)
 '''
-#print(balance / 1e8)
+# print(balance / 1e8)

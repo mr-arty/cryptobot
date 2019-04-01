@@ -1,16 +1,19 @@
-import pandas as pd
+import pandas
 import requests
 from stockstats import StockDataFrame
 from datetime import datetime
 
+
 from_symbol = 'XBTUSD'
 to_symbol = 'USD'
-limit = 180             #180 minutes (3 hours)
-exchange = 'Bitmex'     #'Bitmex'
+limit = 180             # 180 minutes (3 hours)
+exchange = 'Bitmex'     # 'Bitmex'
 datetime_interval = 'minute'
+
 
 def get_filename(from_symbol, to_symbol, exchange, datetime_interval, download_date):
     return '%s_%s_%s_%s_%s.csv' % (from_symbol, to_symbol, exchange, datetime_interval, download_date)
+
 
 '''
 def download_data(from_symbol, to_symbol, exchange, datetime_interval, limit):
@@ -31,11 +34,11 @@ def download_data(from_symbol, to_symbol, exchange, datetime_interval, limit):
     return data
 '''
 
+
 def convert_to_dataframe(data):
-    df = pd.io.json.json_normalize(data)
-    #df['timestamp'] = pd.to_datetime(df.time, unit='s')
-    df = df[['timestamp', 'low', 'high', 'open',
-         'close', 'volume']]
+    df = pandas.io.json.json_normalize(data)
+    # df['timestamp'] = pandas.to_datetime(df.time, unit='s')
+    df = df[['timestamp', 'low', 'high', 'open', 'close', 'volume']]
     return df
 
 
@@ -44,6 +47,8 @@ def filter_empty_datapoints(df):
     print('Filtering %d empty datapoints' % indices.shape[0])
     df = df.drop(indices)
     return df
+
+
 '''
 data = download_data(from_symbol, to_symbol, exchange, datetime_interval, limit)
 df = convert_to_dataframe(data)
