@@ -27,13 +27,15 @@ def get_balance():
     return balance, marginPcnt
 
 
-def get_trades(interval, limit):
+def get_trades(interval, limit, startTime, endTime):
     trades = client.Trade.Trade_getBucketed(
         binSize=interval,
         partial=False,
         symbol=symbol,
         count=limit,
-        reverse=False
+        reverse=False,
+        startTime=startTime,
+        endTime=endTime
     ).result()
     return trades[0] or []
 
