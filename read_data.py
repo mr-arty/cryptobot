@@ -12,7 +12,6 @@ def read_dataset(filename):
     return df
 
 
-# df = read_dataset(filename)
 '''
 def read_raw_data():
     df = StockDataFrame.retype(df)

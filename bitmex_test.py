@@ -10,7 +10,7 @@ Side = 'Sell'
 amountToTrade = 50
 price = 3912
 '''
-# НЕ ДЕМО-ВЕРСИЯ
+# NOT DEMO
 client = bitmex.bitmex(test=False, api_key=key, api_secret=secret_key)
 
 
@@ -45,7 +45,7 @@ def new_limit_order(Side, price, amountToTrade):
         symbol=symbol,
         side=Side,
         orderQty=amountToTrade,
-        price=priceNow,   # Need to check this variable
+        price=priceNow,       # Need to check this variable
         ordType='Limit'
         ).result()
 
@@ -71,9 +71,10 @@ def new_close_order(Side, price, amountToTrade):
         ).result()
 
 
-def get_trades_request(interval, limit):        # Нужно допилить эту функцию, чтобы передавать параметры через payload
+def get_trades_request(interval, limit):
     trades = requests.get("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1h&symbol=XBTUSD&count=24").json()
-    return trades
+    return trades                               # Need to finish this up, in order to get parameters in payload
+                                                # Right now it only works with variables directly injected into url
 
 
 '''
@@ -84,4 +85,4 @@ for n in range(50):
     print(ether_ask_price, ether_bid_price)
     sleep(2)
 '''
-# print(balance / 1e8)
+

@@ -27,8 +27,10 @@ def bot_init():
     else:
         s1 = min(df['low'] - 20)        # set support level
         r1 = max(df['high'] + 20)       # set resistance level
-    store.dispatch(({'type': 'SET_S1', 'support_1': s1}))
-    print (s1)
+    #store.dispatch(({'type': 'SET_S1', 'support_1': s1}))
+    #store.dispatch(({'type': 'SET_R1', 'resistance_1': r1}))
+    #store.get_state({'type': 'SET_S1'})                        # This is for storing global variables in a Redux state tree
+                                                                # It doesn't work right now
 
     print (df)
     print(df['atr'])
