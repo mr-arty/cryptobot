@@ -21,6 +21,10 @@ class Store(object):
     def subscribe(self, listener):
         self.listeners.append(listener)
 
+    def get_state(self, action):                        # Added get_state function, I don't know if it works correctly
+        print(self.root_reducer(self.state, action))
+        return self.__state
+
     @property
     def state(self):
         return self.__state
