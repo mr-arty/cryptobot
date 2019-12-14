@@ -3,13 +3,8 @@ from settings import *
 import requests
 from time import sleep
 
-
 symbol = 'XBTUSD'
-'''
-Side = 'Sell'
-amountToTrade = 50
-price = 3912
-'''
+price = 0
 # NOT DEMO
 client = bitmex.bitmex(test=False, api_key=key, api_secret=secret_key)
 
@@ -69,20 +64,3 @@ def new_close_order(Side, price, amountToTrade):
         price=price,
         execInst='ReduceOnly'
         ).result()
-
-
-def get_trades_request(interval, limit):
-    trades = requests.get("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1h&symbol=XBTUSD&count=24").json()
-    return trades                               # Need to finish this up, in order to get parameters in payload
-                                                # Right now it only works with variables directly injected into url
-
-
-'''
-for n in range(50):
-    response = requests.get("https://www.bitmex.com/api/v1/orderBook/L2?symbol=xbt&depth=1").json()
-    ether_ask_price = response[0]['price']
-    ether_bid_price = response[1]['price']
-    print(ether_ask_price, ether_bid_price)
-    sleep(2)
-'''
-
