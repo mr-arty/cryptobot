@@ -1,10 +1,8 @@
 import bitmex
 from settings import *
-import requests
 from time import sleep
 
 symbol = 'XBTUSD'
-price = 0
 # NOT DEMO
 client = bitmex.bitmex(test=False, api_key=key, api_secret=secret_key)
 

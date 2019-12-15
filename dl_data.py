@@ -7,11 +7,8 @@ exchange = 'Bitmex'     # 'Bitmex'
 datetime_interval = 'minute'
 
 
-def get_filename(from_symbol, to_symbol, exchange, datetime_interval, download_date):
-    return '%s_%s_%s_%s_%s.csv' % (from_symbol, to_symbol, exchange, datetime_interval, download_date)
-
-
 def convert_to_dataframe(data):
+    pandas.set_option('mode.chained_assignment', None)
     df = pandas.io.json.json_normalize(data)
     df = df[['timestamp', 'low', 'high', 'open', 'close', 'volume']]
     return df
