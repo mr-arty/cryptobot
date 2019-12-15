@@ -1,11 +1,5 @@
 import pandas
 
-from_symbol = 'XBTUSD'
-to_symbol = 'USD'
-limit = 180             # 180 minutes (3 hours)
-exchange = 'Bitmex'     # 'Bitmex'
-datetime_interval = 'minute'
-
 
 def convert_to_dataframe(data):
     pandas.set_option('mode.chained_assignment', None)

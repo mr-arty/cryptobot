@@ -41,11 +41,13 @@ def bot_run():
     # pos = margin * 0.03          # size of current position, not used right now
 
     df = read_raw_data('1m', 10, start_time, time_now)
-    df['macd'] = df.get('macd')    # calculate MACD
-    df['macds'] = df.get('macds')  # MACD signal
-    df['macdh'] = df.get('macdh')  # MACD histogram
-    df['rsi'] = df.get('rsi_15')   # calculate RSI
-    print(df['rsi'])
+    df['macd'] = df.get('macd')     # calculate MACD
+    df['macds'] = df.get('macds')   # MACD signal
+    df['macdh'] = df.get('macdh')   # MACD histogram
+    df['rsi'] = df.get('rsi_15')    # calculate RSI
+    df['middle'] = df.get('middle') # get middle price
+    print('Last RSI value: ', '{0:.2f}'.format(df['rsi'][9]))           # use format to display 2 decimal places
+    print('Last middle price: ', '{0:.2f}'.format(df['middle'][9]))     # use format to display 2 decimal places
 
 
 ''' Simple strategy to be tested and implemented. Not used right now.

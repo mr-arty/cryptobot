@@ -3,19 +3,20 @@ from settings import *
 from time import sleep
 
 symbol = 'XBTUSD'
+currency = 'XBt'
 # NOT DEMO
 client = bitmex.bitmex(test=False, api_key=key, api_secret=secret_key)
 
 
 def get_balance():
     balance = client.User.User_getMargin(
-        currency='XBt'
+        currency=currency
         ).result()[0]['walletBalance']
     balance /= 1e8
 
     sleep(2)
     marginPcnt = client.User.User_getMargin(
-        currency='XBt'
+        currency=currency
     ).result()[0]['marginUsedPcnt']
     return balance, marginPcnt
 
