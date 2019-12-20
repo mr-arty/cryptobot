@@ -19,7 +19,7 @@ def bot_init():
     margin *= 100
     marginPcnt *= 100
     df = read_raw_data('1h', 24, start_time, time_now)
-    df['atr'] = df.get('atr')           # calculate RSI
+    df['atr'] = df.get('atr')           # calculate ATR
     if df['atr'][23] > 20:              # if atr > 20, set s/r for high volatility
         s1 = min(df['low'] - 30)        # set support level
         r1 = max(df['high'] + 30)       # set resistance level
