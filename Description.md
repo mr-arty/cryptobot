@@ -1,6 +1,6 @@
 ## Crypto-exchange query bot
 
-This bot connects to the Bitmex exchange using its REST API. The settins.py file should contain a key and a secret key.
+This bot connects to the Bitmex exchange using its REST API. The settings.py file should contain a key and a secret key.
 
 The bot uses the stockstats library https://github.com/jealous/stockstats which contains many useful trading indicators.
 
